@@ -1,20 +1,27 @@
-import http from "http";
+// import http from "http";
+import app from "./src/app.js";
+
 
 const PORT =3001;
 
-const routes = {
-    "/": "Estudo em Node.JS",
-    "/livros": "Rota livros",
-    "/autores": "Rota autores"
-}
+// criando server do 0 com http
+// const routes = {
+//     "/": "Estudo em Node.JS",
+//     "/livros": "Rota livros",
+//     "/autores": "Rota autores"
+// }
 
-const server = http.createServer((req, res) => {
-    // head da requisição
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end(routes[req.url]);
-})
+// const server = http.createServer((req, res) => {
+//     // head da requisição
+//     res.writeHead(200, {"Content-Type": "text/plain"});
+//     res.end(routes[req.url]);
+// })
 
 
-server.listen(PORT, () => {
-    console.log("servidor escutando")
+// server.listen(PORT, () => {
+//     console.log("servidor escutando")
+// })
+
+app.listen(PORT, () => {
+    console.log('servidor up -> epxress')
 })
