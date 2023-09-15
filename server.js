@@ -1,7 +1,6 @@
 // import http from "http";
 import app from "./src/app.js";
 
-
 const PORT =3001;
 
 // criando server do 0 com http
