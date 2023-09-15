@@ -1,4 +1,4 @@
-import express, { application } from "express";
+import express from "express";
 
 // app é uma instancia de express
 const app = express();
@@ -54,7 +54,6 @@ app.delete('/livros/:id', (req, res) => {
     livros.splice(index, 1);
     res.status(200).send('Livro deletado com sucesso');
 })
-
 export default app;
 
 // mongodb+srv://admin:<password>@cluster0.nw0hmxi.mongodb.net/?retryWrites=true&w=majority
