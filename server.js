@@ -1,4 +1,7 @@
 // import http from "http";
+
+// dotenv tem que ser importado no ponto mais externo da aplicação, a primeira a ser rodada
+import 'dotenv/config';
 import app from "./src/app.js";
 
 const PORT =3001;
