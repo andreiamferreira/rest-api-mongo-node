@@ -1,20 +1,31 @@
 import express from "express";
+import conectaNaDB from "./config/dbConnect.js";
 
+const conexao = await conectaNaDB();
+// metodos on sempre esperam um evento
+conexao.on('error', (erro) => {
+    console.log('erro de conexao', erro)
+})
+
+conexao.once('open', () => {
+    console.log('conexao com bd feita com sucesso')
+})
 // app é uma instancia de express
 const app = express();
 //middleware
 app.use(express.json());
 
-const livros = [
-    {
-        id: 1,
-        titulo: "O Senhor dos Anéis"
-    },
-    {
-        id: 2,
-        título: "O Hobbit"
-    }
-]
+//array para teste do banco local
+// const livros = [
+//     {
+//         id: 1,
+//         titulo: "O Senhor dos Anéis"
+//     },
+//     {
+//         id: 2,
+//         título: "O Hobbit"
+//     }
+// ]
 
 app.get("/", (req, res) => {
     res.status(200).send('Usando express');
@@ -55,5 +66,3 @@ app.delete('/livros/:id', (req, res) => {
     res.status(200).send('Livro deletado com sucesso');
 })
 export default app;
-
-// mongodb+srv://admin:<password>@cluster0.nw0hmxi.mongodb.net/?retryWrites=true&w=majority
