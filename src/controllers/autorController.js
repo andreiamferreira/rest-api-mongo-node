@@ -1,10 +1,9 @@
-import livro from "../models/Livro.js";
-
+import { autor } from "../models/Autor.js";
 class AutorController {
 
     static async listarAutores(req, res) {
         try {
-            const autores = await livro.find({});
+            const autores = await autor.find({});
             res.status(200).json(autores);
         } catch (error) {
             res.status(500).json({
