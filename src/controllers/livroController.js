@@ -1,16 +1,16 @@
 import { autor } from "../models/Autor.js";
-
 import livro from "../models/Livro.js";
-
 
 
 class LivroController {
 
 	static listarLivros = async (req, res, next) => {
 		try {
-			const livros = await livro.find({});
+			const buscaLivros = livro.find({});
 
-			res.status(200).json(livros);
+			req.resultado = buscaLivros;
+
+			next();
 		} catch (error) {
 			next(error);
 		}
