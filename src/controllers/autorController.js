@@ -1,38 +1,37 @@
+import notFound from "../erros/notFound.js";
 import { autor } from "../models/Autor.js";
 
 class AutorController {
 
-
-
-	static async listarAutores(req, res) {
+	static listarAutores = async (req, res, next) => {
 		try {
 			const autores = await autor.find({});
 
 			res.status(200).json(autores);
 		} catch (error) {
-			res.status(500).json({
-				message: `${error.message} - falha ao buscar autores`
-			});
+			next(error);
 		}
-	}
+	};
 
 
 
-	static async buscarAutorPorId(req, res) {
+	static buscarAutorPorId = async (req, res, next) => {
 		try {
 			const id = req.params.id;
 			const autorEncontrado = await autor.findById(id);
 
-			res.status(200).json(autorEncontrado);
+			if (autorEncontrado !== null) {
+				res.status(200).json(autorEncontrado);
+			}else{
+				next(new notFound("ID do autor não encontrada"));
+			}
 		} catch (error) {
-			res.status(500).json({
-				message: `${error.message} - falha ao busca autor`
-			});
+			next(error);
 		}
-	}
+	};
 
 
-	static async cadastrarAutor(req, res) {
+	static cadastrarAutor = async (req, res, next) => {
 		try {
 			const novoAutor = await autor.create(req.body);
 
@@ -41,14 +40,12 @@ class AutorController {
 				autor: novoAutor
 			});
 		} catch (error) {
-			res.status(500).json({
-				message: `${error.message} - falha ao cadastrar autor'`
-			});
+			next(error);
 		}
-	}
+	};
 
 
-	static async atualizarAutorPorId(req, res) {
+	static atualizarAutorPorId = async (req, res, next) => {
 		try {
 			const id = req.params.id;
 
@@ -57,14 +54,12 @@ class AutorController {
 				message: "Autor atualizado"
 			});
 		} catch (error) {
-			res.status(500).json({
-				message: `${error.message} - falha ao busca autor`
-			});
+			next(error);
 		}
-	}
+	};
 
 
-	static async deletarAutorPorId(req, res) {
+	static deletarAutorPorId = async (req, res, next) => {
 		try {
 			const id = req.params.id;
 
@@ -73,11 +68,9 @@ class AutorController {
 				message: "Autor deletado!"
 			});
 		} catch (error) {
-			res.status(500).json({
-				message: `${error.message} - falha ao excluir autor`
-			});
+			next(error);
 		}
-	}
+	};
 }
 
 
