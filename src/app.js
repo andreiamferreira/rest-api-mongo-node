@@ -5,13 +5,13 @@ import routes from "./routes/index.js";
 
 const conexao = await conectaNaDB();
 // metodos on sempre esperam um evento
-conexao.on('error', (erro) => {
-    console.log('erro de conexao', erro)
-})
+conexao.on("error", (erro) => {
+	console.log("erro de conexao", erro);
+});
 
-conexao.once('open', () => {
-    console.log('conexao com bd feita com sucesso')
-})
+conexao.once("open", () => {
+	console.log("conexao com bd feita com sucesso");
+});
 // app é uma instancia de express
 const app = express();
 //middleware
