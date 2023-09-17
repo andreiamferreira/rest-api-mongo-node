@@ -2,6 +2,8 @@ import express from "express";
 import conectaNaDB from "./config/dbConnect.js";
 // import livro from "./models/Livro.js";
 import routes from "./routes/index.js";
+import manipuladorDeErros from "./middlewares/manipuladorErros.js";
+import manipulador404 from "./middlewares/manipulador404.js";
 
 const conexao = await conectaNaDB();
 // metodos on sempre esperam um evento
@@ -18,6 +20,10 @@ const app = express();
 // app.use(express.json());
 
 routes(app);
+
+app.use(manipulador404);
+
+app.use(manipuladorDeErros);
 
 //array para teste do banco local
 // const livros = [
