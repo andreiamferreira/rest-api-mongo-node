@@ -6,7 +6,7 @@ const routes = express.Router();
 
 // maior complexidade para a menor
 routes.get("/livros", LivroController.listarLivros, paginar);
-routes.get("/livros/busca", LivroController.listarLivrosPorEditora);
+routes.get("/livros/busca", LivroController.buscarLivroPorDados);
 routes.get("/livros/:id", LivroController.buscarLivroPorId);
 routes.post("/livros", LivroController.cadastrarLivro);
 routes.post("/livros/:id", LivroController.atualizarLivroPorId);
