@@ -120,9 +120,7 @@ async function processaBusca(parametros) {
 
 	if (minPaginas || maxPaginas) busca.numeroPaginas = {};
 
-	// gte = Greater Than or Equal = Maior ou igual que
 	if (minPaginas) busca.numeroPaginas.$gte = minPaginas;
-	// lte = Less Than or Equal = Menor ou igual que
 	if (maxPaginas) busca.numeroPaginas.$lte = maxPaginas;
 
 	if (nomeAutor) {
